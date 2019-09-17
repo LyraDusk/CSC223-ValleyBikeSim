@@ -157,6 +157,7 @@ public class ValleyBikeSim {
 				boolean checkEqual = false;
 				
 				equal_loop:
+					//While the stations are not at equal percentage
 				while(!checkEqual) {
 					boolean skippedFirstRow = false;
 				for(String[] row: stationData) {
@@ -170,8 +171,9 @@ public class ValleyBikeSim {
 				}
 				double average = sum(capacities) / i;
 				
+				//Check the percentages for each station are within bounds
 				for(double cap: capacities) {
-					if(Math.abs(cap-average) <= 5) {
+					if(Math.abs(cap-average) <= .5) {
 						checkEqual = true;
 					} else {
 						checkEqual = false;
@@ -182,6 +184,7 @@ public class ValleyBikeSim {
 				}
 				i = 0;
 				int bikeBuffer = 0;
+				//Rebalance the bikes
 				for(double cap: capacities) {
 					
 					if(cap > average) {
